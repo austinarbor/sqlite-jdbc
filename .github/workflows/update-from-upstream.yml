@@ -121,12 +121,15 @@ jobs:
             exit 1
           fi
 
-      - name: Push and Open PR
+      - name: Push Changes
+        run: |
+          git push --force
+
+      - name: Create PR
         run: |
           upstream_version=$(cat .fork-meta/upstream-version.txt)
-          git push
           gh pr create \
-          --repo austinarbor:sqlite-jdbc \
+          --repo austinarbor/sqlite-jdbc \
           --base master \
           --title "Prepare ${upstream_version}" \
           --body "Changes for ${upstream_version}" \
