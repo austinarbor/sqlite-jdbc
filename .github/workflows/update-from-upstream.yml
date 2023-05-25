@@ -184,7 +184,10 @@ jobs:
 
   test:
     name: Test latest build
-    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        os: [ ubuntu-latest, windows-latest, macos-latest ]
+    runs-on: ${{ matrix.os }}
     needs: [ update-from-upstream, build ]
     steps:
 
