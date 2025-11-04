@@ -1,5 +1,6 @@
 name: Get latest release version from upstream
 on:
+  workflow_dispatch:
   schedule:
     - cron: '*/30 * * * *'
 jobs:
