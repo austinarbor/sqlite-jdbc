@@ -153,6 +153,8 @@ jobs:
       matrix: ${{ steps.set-matrix.outputs.matrix }}
     steps:
       - uses: actions/checkout@v5
+        with:
+          ref: ${{ github.ref_name }}
 
       - name: Build matrix from Makefile
         id: set-matrix
@@ -175,6 +177,8 @@ jobs:
       fail-fast: false
     steps:
       - uses: actions/checkout@v5
+        with:
+          ref: ${{ github.ref_name }}
 
       # Delete existing libs so we only upload the generated one into the artifact
       - name: Delete existing native libs
@@ -246,6 +250,7 @@ jobs:
         with:
           token: ${{ secrets.GH_TOKEN }}
           fetch-depth: 0
+          ref: ${{ github.ref_name }}
 
       - run: git pull --rebase
 
